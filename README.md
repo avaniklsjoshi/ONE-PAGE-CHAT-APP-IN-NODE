@@ -2,7 +2,7 @@
 ----------------------------------
 go to https://socket.io/get-started/chat/
 mongodb://<dbuser>:<dbpassword>@ds028540.mlab.com:28540/chatroom
-
+program lost try this out...
 =====this is the page at this time :) =============================
 
 socket.io
@@ -16,19 +16,19 @@ Download v2.0.3
 Slack72
 
 Get Started: Chat application
-In this guide weíll create a basic chat application. It requires almost no basic prior knowledge of Node.JS or Socket.IO, so itís ideal for users of all knowledge levels.
+In this guide we‚Äôll create a basic chat application. It requires almost no basic prior knowledge of Node.JS or Socket.IO, so it‚Äôs ideal for users of all knowledge levels.
 
 Introduction
-Writing a chat application with popular web applications stacks like LAMP (PHP) has traditionally been very hard. It involves polling the server for changes, keeping track of timestamps, and itís a lot slower than it should be.
+Writing a chat application with popular web applications stacks like LAMP (PHP) has traditionally been very hard. It involves polling the server for changes, keeping track of timestamps, and it‚Äôs a lot slower than it should be.
 
 Sockets have traditionally been the solution around which most realtime chat systems are architected, providing a bi-directional communication channel between a client and a server.
 
 This means that the server can push messages to clients. Whenever you write a chat message, the idea is that the server will get it and push it to all other connected clients.
 
 The web framework
-The first goal is to setup a simple HTML webpage that serves out a form and a list of messages. Weíre going to use the Node.JS web framework express to this end. Make sure Node.JS is installed.
+The first goal is to setup a simple HTML webpage that serves out a form and a list of messages. We‚Äôre going to use the Node.JS web framework express to this end. Make sure Node.JS is installed.
 
-First letís create a package.json manifest file that describes our project. I recommend you place it in a dedicated empty directory (Iíll call mine chat-example).
+First let‚Äôs create a package.json manifest file that describes our project. I recommend you place it in a dedicated empty directory (I‚Äôll call mine chat-example).
 
 
 {
@@ -38,7 +38,7 @@ First letís create a package.json manifest file that describes our project. I re
   "dependencies": {}
 }
     
-Now, in order to easily populate the dependencies with the things we need, weíll use npm install --save:
+Now, in order to easily populate the dependencies with the things we need, we‚Äôll use npm install --save:
 
 npm install --save express@4.15.2
 Now that express is installed we can create an index.js file that will setup our application.
@@ -69,9 +69,9 @@ And if you point your browser to http://localhost:3000:
 
 
 Serving HTML
-So far in index.js weíre calling res.send and pass it a HTML string. Our code would look very confusing if we just placed our entire applicationís HTML there. Instead, weíre going to create a index.html file and serve it.
+So far in index.js we‚Äôre calling res.send and pass it a HTML string. Our code would look very confusing if we just placed our entire application‚Äôs HTML there. Instead, we‚Äôre going to create a index.html file and serve it.
 
-Letís refactor our route handler to use sendFile instead:
+Let‚Äôs refactor our route handler to use sendFile instead:
 
 
 app.get('/', function(req, res){
@@ -113,10 +113,10 @@ Socket.IO is composed of two parts:
 
 A server that integrates with (or mounts on) the Node.JS HTTP Server: socket.io
 A client library that loads on the browser side: socket.io-client
-During development, socket.io serves the client automatically for us, as weíll see, so for now we only have to install one module:
+During development, socket.io serves the client automatically for us, as we‚Äôll see, so for now we only have to install one module:
 
 npm install --save socket.io
-That will install the module and add the dependency to package.json. Now letís edit index.js to add it:
+That will install the module and add the dependency to package.json. Now let‚Äôs edit index.js to add it:
 
 
 var app = require('express')();
@@ -145,12 +145,12 @@ Now in index.html I add the following snippet before the </body>:
   var socket = io();
 </script>
     
-Thatís all it takes to load the socket.io-client, which exposes a io global, and then connect.
+That‚Äôs all it takes to load the socket.io-client, which exposes a io global, and then connect.
 
-Notice that Iím not specifying any URL when I call io(), since it defaults to trying to connect to the host that serves the page.
+Notice that I‚Äôm not specifying any URL when I call io(), since it defaults to trying to connect to the host that serves the page.
 
-If you now reload the server and the website you should see the console print ìa user connectedî.
-Try opening several tabs, and youíll see several messages:
+If you now reload the server and the website you should see the console print ‚Äúa user connected‚Äù.
+Try opening several tabs, and you‚Äôll see several messages:
 
 
 
@@ -171,7 +171,7 @@ Then if you refresh a tab several times you can see it in action:
 Emitting events
 The main idea behind Socket.IO is that you can send and receive any events you want, with any data you want. Any objects that can be encoded as JSON will do, and binary data is supported too.
 
-Letís make it so that when the user types in a message, the server gets it as a chat message event. The scripts section in index.html should now look as follows:
+Let‚Äôs make it so that when the user types in a message, the server gets it as a chat message event. The scripts section in index.html should now look as follows:
 
 
 <script src="/socket.io/socket.io.js"></script>
@@ -212,7 +212,7 @@ io.on('connection', function(socket){
   socket.broadcast.emit('hi');
 });
     
-In this case, for the sake of simplicity weíll send the message to everyone, including the sender.
+In this case, for the sake of simplicity we‚Äôll send the message to everyone, including the sender.
 
 
 io.on('connection', function(socket){
@@ -221,7 +221,7 @@ io.on('connection', function(socket){
   });
 });
     
-And on the client side when we capture a chat message event weíll include it in the page. The total client-side JavaScript code now amounts to:
+And on the client side when we capture a chat message event we‚Äôll include it in the page. The total client-side JavaScript code now amounts to:
 
 
 <script>
@@ -246,9 +246,9 @@ Here are some ideas to improve the application:
 
 Broadcast a message to connected users when someone connects or disconnects
 Add support for nicknames
-Donít send the same message to the user that sent it himself. Instead, append the message directly as soon as he presses enter.
-Add ì{user} is typingî functionality
-Show whoís online
+Don‚Äôt send the same message to the user that sent it himself. Instead, append the message directly as soon as he presses enter.
+Add ‚Äú{user} is typing‚Äù functionality
+Show who‚Äôs online
 Add private messaging
 Share your improvements!
 Getting this example
